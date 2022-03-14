@@ -251,7 +251,7 @@ impl<B> Hart<B> {
 
     fn handle_trap_machine(&mut self, cause: TrapCause, value: TrapValue) {
         self.csr.mcause.set(cause);
-        self.csr.mepc.set(self.pc.wrapping_add(4));
+        self.csr.mepc.set(if cause.is_interrupt() { self.next } else { self.pc });
         self.csr.mtval.set(value);
 
         if self.csr.mtvec.mode() == 0 {
@@ -261,7 +261,7 @@ impl<B> Hart<B> {
 
     fn handle_trap_supervisor(&mut self, cause: TrapCause, value: TrapValue) {
         self.csr.scause.set(cause);
-        self.csr.sepc.set(self.pc.wrapping_add(4));
+        self.csr.sepc.set(if cause.is_interrupt() { self.next } else { self.pc });
         self.csr.stval.set(value);
 
         if self.csr.stvec.mode() == 0 {
@@ -271,6 +271,10 @@ impl<B> Hart<B> {
 }
 
 impl TrapCause {
+    const fn is_interrupt(self) -> bool {
+        self as u64 & 1 << 63 != 0
+    }
+
     const fn interrupt(code: u64) -> u64 {
         code | 1 << 63
     }
