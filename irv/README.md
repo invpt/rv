@@ -1,4 +1,6 @@
 # irv
+![Crates.io](https://img.shields.io/crates/v/irv)
+
 A library with a very open interface to an interpreting RISC-V emulator.
 
 This crate provides only user-mode emulation, but I plan to make an interface
