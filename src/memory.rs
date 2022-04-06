@@ -1,6 +1,10 @@
-use core::{mem::{size_of, align_of, transmute}, slice, marker::PhantomData};
+use core::{
+    marker::PhantomData,
+    mem::{align_of, size_of, transmute},
+    slice,
+};
 
-use crate::bus::{Bus, BusError};
+use crate::{Bus, BusError};
 
 /// An efficient implementation of main memory.
 #[repr(transparent)]
@@ -76,7 +80,7 @@ macro_rules! impl_bus {
             fn load(&self, address: $addr) -> Result<$val, BusError> {
                 if address as usize as u64 == address {
                     let ptr = self.calculate_destination(address as usize)?;
-                    
+
                     // SAFETY: check_address returns a pointer that is guaranteed to be valid.
                     Ok(unsafe { *ptr })
                 } else {
@@ -87,7 +91,7 @@ macro_rules! impl_bus {
             fn store(&self, address: $addr, value: $val) -> Result<(), BusError> {
                 if address as usize as u64 == address {
                     let ptr = self.calculate_destination(address as usize)?;
-                    
+
                     // SAFETY: check_address returns a pointer that is guaranteed to be valid.
                     Ok(unsafe { *ptr = value })
                 } else {
