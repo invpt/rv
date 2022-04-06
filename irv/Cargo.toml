@@ -2,3 +2,5 @@
 name = "irv"
 version = "0.0.1"
 edition = "2021"
+license = "MIT"
+description = "A library with a very open interface to an interpreting RISC-V emulator."
