@@ -4,3 +4,9 @@ version = "0.0.1"
 edition = "2021"
 license = "MIT"
 description = "A library with a very open interface to an interpreting RISC-V emulator."
+
+[dependencies]
+irv-traits = { path = "../irv-traits" }
+
+[dev-dependencies]
+irv-loader = { path = "../irv-loader" }

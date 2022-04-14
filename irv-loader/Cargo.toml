@@ -1,0 +1,8 @@
+[package]
+name = "irv-loader"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+goblin = "0.5"
+irv-traits = { path = "../irv-traits" }

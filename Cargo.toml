@@ -1,2 +1,2 @@
 [workspace]
-members = ["irv"]
+members = ["irv", "irv-traits", "irv-loader"]
