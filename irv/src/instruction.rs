@@ -126,11 +126,11 @@ pub fn lbu<B: Bus<u64, u8>, C>(hart: &mut BaseHart<B, C>, raw: u32) {
     l(hart, raw, |x| x as u64)
 }
 
-pub fn lhu<B: Bus<u64, u8>, C>(hart: &mut BaseHart<B, C>, raw: u32) {
+pub fn lhu<B: Bus<u64, u16>, C>(hart: &mut BaseHart<B, C>, raw: u32) {
     l(hart, raw, |x| x as u64)
 }
 
-pub fn lwu<B: Bus<u64, u8>, C>(hart: &mut BaseHart<B, C>, raw: u32) {
+pub fn lwu<B: Bus<u64, u32>, C>(hart: &mut BaseHart<B, C>, raw: u32) {
     l(hart, raw, |x| x as u64)
 }
 
