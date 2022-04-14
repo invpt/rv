@@ -1,12 +1,12 @@
 [package]
 name = "irv"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 license = "MIT"
 description = "A library with a very open interface to an interpreting RISC-V emulator."
 
 [dependencies]
-irv-traits = { path = "../irv-traits" }
+irv-traits = { path = "../irv-traits", version = "0.0.1" }
 
 [dev-dependencies]
-irv-loader = { path = "../irv-loader" }
+irv-loader = { path = "../irv-loader", version = "0.0.1" }
