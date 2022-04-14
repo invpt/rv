@@ -32,8 +32,8 @@ pub fn jal<B, C>(hart: &mut BaseHart<B, C>, raw: u32) {
 }
 
 pub fn jalr<B, C>(hart: &mut BaseHart<B, C>, raw: u32) {
-    hart.gpr[rd(raw)] = hart.next;
     let target = hart.gpr[rs1(raw)].wrapping_add(i_imm(raw) as u64) & !0 << 1;
+    hart.gpr[rd(raw)] = hart.next;
 
     if target & 0b11 == 0 {
         hart.next = target
