@@ -138,6 +138,7 @@ impl<B, C> BaseHart<B, C> {
             0b001_0111011 => instruction::sllw,
             0b101_0111011 => instruction::srxw,
             0b000_0001111 => instruction::fence,
+            0b001_0001111 => instruction::fence_i,
             0b000_1110011 => instruction::ecall_ebreak,
             0b001_1110011 => instruction::csrrw,
             0b010_1110011 => instruction::csrrs,

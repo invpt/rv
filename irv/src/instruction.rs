@@ -298,6 +298,8 @@ pub fn srxw<B, C>(hart: &mut BaseHart<B, C>, raw: u32) {
 
 pub fn fence<B, C>(_hart: &mut BaseHart<B, C>, _raw: u32) {}
 
+pub fn fence_i<B, C>(_hart: &mut BaseHart<B, C>, _raw: u32) {}
+
 pub fn ecall_ebreak<B, C>(hart: &mut BaseHart<B, C>, raw: u32) {
     if raw & 1 << 20 == 0 {
         hart.raise(Exception::EnvironmentCall)
