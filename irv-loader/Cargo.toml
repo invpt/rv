@@ -7,4 +7,4 @@ description = "A loader for the irv library."
 
 [dependencies]
 goblin = "0.5"
-irv-traits = { path = "../irv-traits" }
+irv-traits = { path = "../irv-traits", version = "0.0.1" }
