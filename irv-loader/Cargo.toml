@@ -2,6 +2,8 @@
 name = "irv-loader"
 version = "0.0.1"
 edition = "2021"
+license = "MIT"
+description = "A loader for the irv library."
 
 [dependencies]
 goblin = "0.5"
