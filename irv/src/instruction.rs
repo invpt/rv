@@ -1,7 +1,6 @@
 //! Implementation of each base instruction.
 
-use core::ops::{Index, IndexMut};
-use std::num::{NonZeroU32, NonZeroU64};
+use core::{ops::{Index, IndexMut}, num::{NonZeroU32, NonZeroU64}};
 
 use crate::*;
 

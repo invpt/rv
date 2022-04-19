@@ -1,3 +1,5 @@
+#![no_std]
+
 /// An error that can be thrown on a memory access.
 #[derive(Debug)]
 pub enum BusError {

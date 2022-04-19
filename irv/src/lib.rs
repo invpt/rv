@@ -1,4 +1,6 @@
-use std::num::{NonZeroU32, NonZeroU64};
+#![no_std]
+
+use core::num::{NonZeroU32, NonZeroU64};
 
 pub use irv_traits::*;
 
@@ -158,7 +160,7 @@ impl<B, C> BaseHart<B, C> {
         self.pc = self.next;
 
         let mut result = Ok(());
-        std::mem::swap(&mut self.result, &mut result);
+        core::mem::swap(&mut self.result, &mut result);
         result
     }
 

@@ -1,16 +1,16 @@
-use std::{fs::{self, File}, path::Path, io};
+use std::{fs, path::Path, io};
 
 use irv::{Memory, Bus, BaseHart, Exception};
 
 const TEST_BUS_BASE: u64 = 0x80000000;
 const MAX_INSTRET: usize = 1000;
 
-struct TestBus<'a>(&'a Memory);
+struct TestBus(Memory<Vec<u64>>);
 
 macro_rules! impl_test_bus {
     ($($ty:ident)*) => {
         $(
-            impl<'a> Bus<u64, $ty> for TestBus<'a> {
+            impl Bus<u64, $ty> for TestBus {
                 fn load(&self, address: u64) -> Result<$ty, irv::BusError> {
                     self.0.load(address.wrapping_sub(TEST_BUS_BASE))
                 }
@@ -43,8 +43,7 @@ fn test_riscv_tests() -> Result<(), io::Error> {
 }
 
 fn test_riscv_test(elf_data: Vec<u8>) {
-    let mut memory_backing = vec![0u64; 8000];
-    let bus = TestBus(Memory::new(&mut memory_backing));
+    let bus = TestBus(Memory::new(vec![0u64; 8000]));
 
     irv_loader::load(&bus, &elf_data).expect("Failed to parse or load ELF");
 
