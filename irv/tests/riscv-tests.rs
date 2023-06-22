@@ -1,6 +1,6 @@
-use std::{fs, path::Path, io};
+use std::{fs, io, path::Path};
 
-use irv::{Memory, Bus, BaseHart, Exception};
+use irv::{BaseHart, Bus, Exception, Memory};
 
 const TEST_BUS_BASE: u64 = 0x80000000;
 const MAX_INSTRET: usize = 1000;
@@ -14,7 +14,7 @@ macro_rules! impl_test_bus {
                 fn load(&self, address: u64) -> Result<$ty, irv::BusError> {
                     self.0.load(address.wrapping_sub(TEST_BUS_BASE))
                 }
-            
+
                 fn store(&self, address: u64, value: $ty) -> Result<(), irv::BusError> {
                     self.0.store(address.wrapping_sub(TEST_BUS_BASE), value)
                 }
@@ -67,7 +67,7 @@ fn test_riscv_test(elf_data: Vec<u8>) {
                     panic!();
                 } else {
                     // pass
-                    break
+                    break;
                 }
             }
             Err(e) => panic!("Unexpected exception thrown during execution: {e:#?}"),

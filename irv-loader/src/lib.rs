@@ -24,7 +24,8 @@ impl From<BusError> for Error {
 /// Attempts to parse `elf_data` as an ELF file and store the contents of all
 /// of its loadable segments into appropriate addresses on the `bus`.
 pub fn load<B>(bus: &B, elf_data: &[u8]) -> Result<(), Error>
-where B: Bus<u64, u8>
+where
+    B: Bus<u64, u8>,
 {
     let elf = goblin::elf::Elf::parse(elf_data)?;
 
@@ -35,7 +36,7 @@ where B: Bus<u64, u8>
         let mut vm_addr = phdr.vm_range().start as u64;
         for byte in data {
             if vm_addr == vm_range.end as u64 {
-                break
+                break;
             }
 
             bus.store(vm_addr, *byte)?;

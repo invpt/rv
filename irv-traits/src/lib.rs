@@ -43,7 +43,11 @@ pub struct CsrIllegal;
 pub struct CsrAddress(u16);
 
 impl Csr for () {
-    fn access(&mut self, address: CsrAddress, f: impl FnOnce(u64) -> u64) -> Result<u64, CsrIllegal> {
+    fn access(
+        &mut self,
+        address: CsrAddress,
+        f: impl FnOnce(u64) -> u64,
+    ) -> Result<u64, CsrIllegal> {
         Err(CsrIllegal)
     }
 }
@@ -59,11 +63,11 @@ impl CsrAddress {
     }
 
     /// Creates a new CsrAddress and assumes that the given address is less than 4096.
-    /// 
+    ///
     /// # Safety
     /// `address` must be less than 4096. If it is not, undefined behavior may be invoked,
     /// because users of this type are permitted to assume that the interior address is
-    /// less than 4096. 
+    /// less than 4096.
     pub const unsafe fn new_unchecked(address: u16) -> CsrAddress {
         CsrAddress(address)
     }

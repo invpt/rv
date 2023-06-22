@@ -1,6 +1,9 @@
 //! Implementation of each base instruction.
 
-use core::{ops::{Index, IndexMut}, num::{NonZeroU32, NonZeroU64}};
+use core::{
+    num::{NonZeroU32, NonZeroU64},
+    ops::{Index, IndexMut},
+};
 
 use crate::*;
 
